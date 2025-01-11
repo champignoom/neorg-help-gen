@@ -9,8 +9,16 @@ for i in *.md; do
 done
 
 for i in norgs/*.norg; do
-	echo $i; nvim $i --headless -c "luafile $DIR/all.lua"
+	echo $i
+
 	sed -i 's@^[*]\+ .* (empty$@& list)@; s@^\( *-\+\) (@\1 \\(@; s@{https://github.com/nvim-neorg/neorg/wiki/\([A-Za-z-]\+\)}@{:\1:}@g; s@{\(Dependencies\)}@{:\1:}@' "$i"
+
+	# headless doesn't work
+	# nvim $i --headless -c "luafile $DIR/all.lua"
+
+	nvim $i -c "luafile $DIR/all.lua"
+
+	# TODO: supress hit-enter
 done
 
 rm norgs/_Sidebar.norg
