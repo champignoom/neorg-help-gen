@@ -11,7 +11,7 @@ done
 for i in norgs/*.norg; do
 	echo $i
 
-	sed -i 's@^[*]\+ .* (empty$@& list)@; s@^\( *-\+\) (@\1 \\(@; s@{https://github.com/nvim-neorg/neorg/wiki/\([A-Za-z-]\+\)}@{:\1:}@g; s@{\(Dependencies\)}@{:\1:}@' "$i"
+	sed -i 's@^[*]\+ .* (empty$@& list)@; s@^\( *-\+\) (@\1 \\(@; s@{https://github.com/nvim-neorg/neorg/wiki/\([A-Za-z-]\+\)}@{:\1:}@g; s@{\(Dependencies\)}@{:\1:}@; s@ }`@ \\}`@g' "$i"
 
 	# headless doesn't work
 	# nvim $i --headless -c "luafile $DIR/all.lua"
